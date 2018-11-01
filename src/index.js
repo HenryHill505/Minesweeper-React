@@ -47,6 +47,13 @@ class Field extends React.Component {
 
   handleClick(row, column) {
     this.clickCell(row, column);
+    if (this.state.mineArray[row][column]) {
+      this.loseGame();
+    }
+  }
+
+  loseGame() {
+    alert("You lose");
   }
 
   handleContextMenu(row, column) {
