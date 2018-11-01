@@ -16,7 +16,11 @@ class Cell extends React.Component {
       content = "H";
     }
     return (
-      <button className="Cell" onClick={() => this.props.onClick()}>
+      <button
+        className="Cell"
+        onClick={() => this.props.onClick()}
+        onContextMenu={() => this.props.onContextMenu()}
+      >
         {content}
       </button>
     );
@@ -32,7 +36,8 @@ class Field extends React.Component {
     this.state = {
       isClickedArray: create2dArray(5, 5, false),
       mineArray: mineGrid,
-      adjacentsArray: sensorGrid
+      adjacentsArray: sensorGrid,
+      flaggedArray: create2dArray(5, 5, false)
     };
   }
 
@@ -40,8 +45,15 @@ class Field extends React.Component {
     this.clickCell(row, column);
   }
 
+  handleContextMenu(row, column) {
+    let newArray = this.state.flaggedArray.slice();
+    newArray[row][column] = !this.state.flaggedArray[row][column];
+    this.setState({ flaggedArray: newArray });
+  }
+
   clickCell(row, column) {
-    if (
+    if (this.state.flaggedArray[row][column]) {
+    } else if (
       row > -1 &&
       column > -1 &&
       row < this.state.mineArray.length &&
@@ -62,7 +74,8 @@ class Field extends React.Component {
         for (let j = 0; j < this.state.mineArray[0].length; j++) {
           if (
             this.areAdjacentCellsZero(i, j) &&
-            !this.state.isClickedArray[i][j]
+            !this.state.isClickedArray[i][j] &&
+            !this.state.flaggedArray[i][j]
           ) {
             this.clickCell(i, j);
             cellsOpened = true;
@@ -175,6 +188,7 @@ class Field extends React.Component {
         row={row}
         column={column}
         onClick={() => this.handleClick(row, column)}
+        onContextMenu={() => this.handleContextMenu(row, column)}
         isClicked={this.state.isClickedArray[row][column]}
         hasMine={this.state.mineArray[row][column]}
         adjacentMines={this.state.adjacentsArray[row][column]}
