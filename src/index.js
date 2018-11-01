@@ -13,7 +13,11 @@ class Cell extends React.Component {
         content = this.props.adjacentMines;
       }
     } else {
-      content = "H";
+      if (this.props.isFlagged) {
+        content = "F";
+      } else {
+        content = "H";
+      }
     }
     return (
       <button
@@ -192,6 +196,7 @@ class Field extends React.Component {
         isClicked={this.state.isClickedArray[row][column]}
         hasMine={this.state.mineArray[row][column]}
         adjacentMines={this.state.adjacentsArray[row][column]}
+        isFlagged={this.state.flaggedArray[row][column]}
       />
     );
   }
