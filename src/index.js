@@ -52,9 +52,9 @@ class Field extends React.Component {
         this.props.rowCount,
         this.props.columnCount,
         false
-      ),
-      clearedCells: 0
+      )
     };
+    this.clearedCells = 0;
   }
 
   handleClick(row, column) {
@@ -66,7 +66,7 @@ class Field extends React.Component {
       this.loseGame();
     }
     if (
-      this.state.clearedCells >=
+      this.clearedCells >=
       this.props.rowCount * this.props.columnCount - this.props.mineCount
     ) {
       this.winGame();
@@ -97,10 +97,10 @@ class Field extends React.Component {
     ) {
       let newArray = this.state.isClickedArray.slice();
       newArray[row][column] = true;
-      let newClearedCells = this.state.clearedCells + 1;
+      this.clearedCells += 1;
+      console.log("clearedCells:" + this.clearedCells);
       this.setState({
-        isClickedArray: newArray,
-        clearedCells: newClearedCells
+        isClickedArray: newArray
       });
       this.openEmptyCells();
     }
@@ -268,7 +268,7 @@ class Board extends React.Component {
 
 class Game extends React.Component {
   render() {
-    return <Board rowCount={10} columnCount={10} mineCount={9} />;
+    return <Board rowCount={5} columnCount={5} mineCount={1} />;
   }
 }
 
