@@ -35,13 +35,24 @@ class Field extends React.Component {
   constructor(props) {
     super(props);
 
-    let mineGrid = placeMines(create2dArray(5, 5, false), 2);
+    let mineGrid = placeMines(
+      create2dArray(this.props.rowCount, this.props.columnCount, false),
+      this.props.mineCount
+    );
     let sensorGrid = createSensorGrid(mineGrid);
     this.state = {
-      isClickedArray: create2dArray(5, 5, false),
+      isClickedArray: create2dArray(
+        this.props.rowCount,
+        this.props.columnCount,
+        false
+      ),
       mineArray: mineGrid,
       adjacentsArray: sensorGrid,
-      flaggedArray: create2dArray(5, 5, false)
+      flaggedArray: create2dArray(
+        this.props.rowCount,
+        this.props.columnCount,
+        false
+      )
     };
   }
 
@@ -152,45 +163,61 @@ class Field extends React.Component {
   // }
 
   render() {
+    let cellsArray = [];
+    for (let i = 0; i < this.props.rowCount; i++) {
+      let rowArray = [];
+      for (let j = 0; j < this.props.columnCount; j++) {
+        rowArray.push(this.renderCell(i, j));
+      }
+      cellsArray.push(rowArray);
+    }
     return (
       <div className="field">
-        <div className="row">
-          {this.renderCell(0, 0)}
-          {this.renderCell(0, 1)}
-          {this.renderCell(0, 2)}
-          {this.renderCell(0, 3)}
-          {this.renderCell(0, 4)}
-        </div>
-        <div className="row">
-          {this.renderCell(1, 0)}
-          {this.renderCell(1, 1)}
-          {this.renderCell(1, 2)}
-          {this.renderCell(1, 3)}
-          {this.renderCell(1, 4)}
-        </div>
-        <div className="row">
-          {this.renderCell(2, 0)}
-          {this.renderCell(2, 1)}
-          {this.renderCell(2, 2)}
-          {this.renderCell(2, 3)}
-          {this.renderCell(2, 4)}
-        </div>
-        <div className="row">
-          {this.renderCell(3, 0)}
-          {this.renderCell(3, 1)}
-          {this.renderCell(3, 2)}
-          {this.renderCell(3, 3)}
-          {this.renderCell(3, 4)}
-        </div>
-        <div className="row">
-          {this.renderCell(4, 0)}
-          {this.renderCell(4, 1)}
-          {this.renderCell(4, 2)}
-          {this.renderCell(4, 3)}
-          {this.renderCell(4, 4)}
-        </div>
+        {cellsArray.map(function(row) {
+          return <div className="row">{row}</div>;
+        })}
       </div>
     );
+    // return (
+
+    //   <div className="field">
+    //     <div className="row">
+    //       {this.renderCell(0, 0)}
+    //       {this.renderCell(0, 1)}
+    //       {this.renderCell(0, 2)}
+    //       {this.renderCell(0, 3)}
+    //       {this.renderCell(0, 4)}
+    //     </div>
+    //     <div className="row">
+    //       {this.renderCell(1, 0)}
+    //       {this.renderCell(1, 1)}
+    //       {this.renderCell(1, 2)}
+    //       {this.renderCell(1, 3)}
+    //       {this.renderCell(1, 4)}
+    //     </div>
+    //     <div className="row">
+    //       {this.renderCell(2, 0)}
+    //       {this.renderCell(2, 1)}
+    //       {this.renderCell(2, 2)}
+    //       {this.renderCell(2, 3)}
+    //       {this.renderCell(2, 4)}
+    //     </div>
+    //     <div className="row">
+    //       {this.renderCell(3, 0)}
+    //       {this.renderCell(3, 1)}
+    //       {this.renderCell(3, 2)}
+    //       {this.renderCell(3, 3)}
+    //       {this.renderCell(3, 4)}
+    //     </div>
+    //     <div className="row">
+    //       {this.renderCell(4, 0)}
+    //       {this.renderCell(4, 1)}
+    //       {this.renderCell(4, 2)}
+    //       {this.renderCell(4, 3)}
+    //       {this.renderCell(4, 4)}
+    //     </div>
+    //   </div>
+    // );
   }
 
   renderCell(row, column) {
@@ -211,13 +238,19 @@ class Field extends React.Component {
 
 class Board extends React.Component {
   render() {
-    return <Field />;
+    return (
+      <Field
+        rowCount={this.props.rowCount}
+        columnCount={this.props.columnCount}
+        mineCount={this.props.mineCount}
+      />
+    );
   }
 }
 
 class Game extends React.Component {
   render() {
-    return <Board />;
+    return <Board rowCount={7} columnCount={7} mineCount={2} />;
   }
 }
 
