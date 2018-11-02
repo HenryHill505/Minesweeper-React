@@ -52,7 +52,8 @@ class Field extends React.Component {
         this.props.rowCount,
         this.props.columnCount,
         false
-      )
+      ),
+      clearedCells: 0
     };
   }
 
@@ -64,10 +65,20 @@ class Field extends React.Component {
     ) {
       this.loseGame();
     }
+    if (
+      this.state.clearedCells >=
+      this.props.rowCount * this.props.columnCount - this.props.mineCount
+    ) {
+      this.winGame();
+    }
   }
 
   loseGame() {
     alert("You lose");
+  }
+
+  winGame() {
+    alert("You win");
   }
 
   handleContextMenu(row, column) {
@@ -86,7 +97,11 @@ class Field extends React.Component {
     ) {
       let newArray = this.state.isClickedArray.slice();
       newArray[row][column] = true;
-      this.setState({ isClickedArray: newArray });
+      let newClearedCells = this.state.clearedCells + 1;
+      this.setState({
+        isClickedArray: newArray,
+        clearedCells: newClearedCells
+      });
       this.openEmptyCells();
     }
   }
