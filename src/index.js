@@ -215,10 +215,16 @@ class Board extends React.Component {
   }
 }
 
+class Game extends React.Component {
+  render() {
+    return <Board />;
+  }
+}
+
 //=========================================
 
 const rootElement = document.getElementById("root");
-ReactDOM.render(<Board />, rootElement);
+ReactDOM.render(<Game />, rootElement);
 
 function create2dArray(rows, columns, defaultValue) {
   let newArray = Array(rows);
