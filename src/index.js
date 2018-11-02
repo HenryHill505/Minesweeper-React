@@ -58,7 +58,10 @@ class Field extends React.Component {
 
   handleClick(row, column) {
     this.clickCell(row, column);
-    if (this.state.mineArray[row][column]) {
+    if (
+      this.state.mineArray[row][column] &&
+      !this.state.flaggedArray[row][column]
+    ) {
       this.loseGame();
     }
   }
