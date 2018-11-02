@@ -250,7 +250,7 @@ class Board extends React.Component {
 
 class Game extends React.Component {
   render() {
-    return <Board rowCount={7} columnCount={7} mineCount={2} />;
+    return <Board rowCount={10} columnCount={10} mineCount={9} />;
   }
 }
 
