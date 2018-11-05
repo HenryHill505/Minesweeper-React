@@ -57,74 +57,6 @@ class Field extends React.Component {
     this.clearedCells = 0;
   }
 
-  handleClick(row, column) {
-    this.clickCell(row, column);
-    if (
-      this.state.mineArray[row][column] &&
-      !this.state.flaggedArray[row][column]
-    ) {
-      this.loseGame();
-    }
-    if (
-      this.clearedCells >=
-      this.props.rowCount * this.props.columnCount - this.props.mineCount
-    ) {
-      this.winGame();
-    }
-  }
-
-  loseGame() {
-    alert("You lose");
-  }
-
-  winGame() {
-    alert("You win");
-  }
-
-  handleContextMenu(row, column) {
-    let newArray = this.state.flaggedArray.slice();
-    newArray[row][column] = !this.state.flaggedArray[row][column];
-    this.setState({ flaggedArray: newArray });
-  }
-
-  clickCell(row, column) {
-    if (this.state.flaggedArray[row][column]) {
-    } else if (
-      row > -1 &&
-      column > -1 &&
-      row < this.state.mineArray.length &&
-      column < this.state.mineArray[0].length
-    ) {
-      let newArray = this.state.isClickedArray.slice();
-      newArray[row][column] = true;
-      this.clearedCells += 1;
-      console.log("clearedCells:" + this.clearedCells);
-      this.setState({
-        isClickedArray: newArray
-      });
-      this.openEmptyCells();
-    }
-  }
-
-  openEmptyCells() {
-    let cellsOpened = true;
-    while (cellsOpened) {
-      cellsOpened = false;
-      for (let i = 0; i < this.state.mineArray.length; i++) {
-        for (let j = 0; j < this.state.mineArray[0].length; j++) {
-          if (
-            this.areAdjacentCellsZero(i, j) &&
-            !this.state.isClickedArray[i][j] &&
-            !this.state.flaggedArray[i][j]
-          ) {
-            this.clickCell(i, j);
-            cellsOpened = true;
-          }
-        }
-      }
-    }
-  }
-
   areAdjacentCellsZero(row, column) {
     if (this.isCellZero(row - 1, column - 1)) {
       return true;
@@ -153,6 +85,46 @@ class Field extends React.Component {
     return false;
   }
 
+  clickCell(row, column) {
+    if (this.state.flaggedArray[row][column]) {
+    } else if (
+      row > -1 &&
+      column > -1 &&
+      row < this.state.mineArray.length &&
+      column < this.state.mineArray[0].length
+    ) {
+      let newArray = this.state.isClickedArray.slice();
+      newArray[row][column] = true;
+      this.clearedCells += 1;
+      this.setState({
+        isClickedArray: newArray
+      });
+      this.openEmptyCells();
+    }
+  }
+
+  handleClick(row, column) {
+    this.clickCell(row, column);
+    if (
+      this.state.mineArray[row][column] &&
+      !this.state.flaggedArray[row][column]
+    ) {
+      this.loseGame();
+    }
+    if (
+      this.clearedCells >=
+      this.props.rowCount * this.props.columnCount - this.props.mineCount
+    ) {
+      this.winGame();
+    }
+  }
+
+  handleContextMenu(row, column) {
+    let newArray = this.state.flaggedArray.slice();
+    newArray[row][column] = !this.state.flaggedArray[row][column];
+    this.setState({ flaggedArray: newArray });
+  }
+
   isCellZero(row, column) {
     if (
       row > -1 &&
@@ -167,18 +139,32 @@ class Field extends React.Component {
     return false;
   }
 
-  // clickCellArea(row, column) {
-  //   if (this.state.adjacentsArray[row][column] === 0 ) {
-  //     this.clickCell(row - 1, column - 1);
-  //     this.clickCell(row, column - 1);
-  //     this.clickCell(row + 1, column - 1);
-  //     this.clickCell(row - 1, column);
-  //     this.clickCell(row + 1, column);
-  //     this.clickCell(row - 1, column + 1);
-  //     this.clickCell(row, column + 1);
-  //     this.clickCell(row + 1, column + 1);
-  //   }
-  // }
+  loseGame() {
+    alert("You lose");
+  }
+
+  openEmptyCells() {
+    let cellsOpened = true;
+    while (cellsOpened) {
+      cellsOpened = false;
+      for (let i = 0; i < this.state.mineArray.length; i++) {
+        for (let j = 0; j < this.state.mineArray[0].length; j++) {
+          if (
+            this.areAdjacentCellsZero(i, j) &&
+            !this.state.isClickedArray[i][j] &&
+            !this.state.flaggedArray[i][j]
+          ) {
+            this.clickCell(i, j);
+            cellsOpened = true;
+          }
+        }
+      }
+    }
+  }
+
+  winGame() {
+    alert("You win");
+  }
 
   render() {
     let cellsArray = [];
@@ -196,46 +182,6 @@ class Field extends React.Component {
         })}
       </div>
     );
-    // return (
-
-    //   <div className="field">
-    //     <div className="row">
-    //       {this.renderCell(0, 0)}
-    //       {this.renderCell(0, 1)}
-    //       {this.renderCell(0, 2)}
-    //       {this.renderCell(0, 3)}
-    //       {this.renderCell(0, 4)}
-    //     </div>
-    //     <div className="row">
-    //       {this.renderCell(1, 0)}
-    //       {this.renderCell(1, 1)}
-    //       {this.renderCell(1, 2)}
-    //       {this.renderCell(1, 3)}
-    //       {this.renderCell(1, 4)}
-    //     </div>
-    //     <div className="row">
-    //       {this.renderCell(2, 0)}
-    //       {this.renderCell(2, 1)}
-    //       {this.renderCell(2, 2)}
-    //       {this.renderCell(2, 3)}
-    //       {this.renderCell(2, 4)}
-    //     </div>
-    //     <div className="row">
-    //       {this.renderCell(3, 0)}
-    //       {this.renderCell(3, 1)}
-    //       {this.renderCell(3, 2)}
-    //       {this.renderCell(3, 3)}
-    //       {this.renderCell(3, 4)}
-    //     </div>
-    //     <div className="row">
-    //       {this.renderCell(4, 0)}
-    //       {this.renderCell(4, 1)}
-    //       {this.renderCell(4, 2)}
-    //       {this.renderCell(4, 3)}
-    //       {this.renderCell(4, 4)}
-    //     </div>
-    //   </div>
-    // );
   }
 
   renderCell(row, column) {
