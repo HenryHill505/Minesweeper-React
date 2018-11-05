@@ -213,6 +213,12 @@ class Board extends React.Component {
 }
 
 class Game extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      gameState: 0
+    };
+  }
   render() {
     return <Board rowCount={5} columnCount={5} mineCount={1} />;
   }
