@@ -240,6 +240,9 @@ class Game extends React.Component {
     let rowVal = document.getElementById("RowsBox").value;
     let columnVal = document.getElementById("ColumnsBox").value;
     let mineVal = document.getElementById("MinesBox").value;
+    alert(
+      "Rows" + rowVal + "Columns Mines" + columnVal + "MineCount" + mineVal
+    );
     this.setState({
       rowCount: rowVal,
       columnCount: columnVal,
@@ -270,7 +273,13 @@ class Game extends React.Component {
     if (this.state.gameState === 0) {
       return this.renderMainMenu();
     } else if (this.state.gameState === 1) {
-      return <Board rowCount={5} columnCount={5} mineCount={1} />;
+      return (
+        <Board
+          rowCount={this.state.rowCount}
+          columnCount={this.state.columnCount}
+          mineCount={this.state.minCount}
+        />
+      );
     }
   }
 }
