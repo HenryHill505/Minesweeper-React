@@ -112,6 +112,7 @@ class Field extends React.Component {
 
   loseGame() {
     alert("You lose");
+    this.props.loseFunction();
   }
 
   openEmptyCells() {
@@ -135,6 +136,7 @@ class Field extends React.Component {
 
   winGame() {
     alert("You win");
+    this.props.winFunction();
   }
 
   render() {

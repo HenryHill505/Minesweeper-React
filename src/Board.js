@@ -7,6 +7,8 @@ class Board extends React.Component {
         rowCount={this.props.rowCount}
         columnCount={this.props.columnCount}
         mineCount={this.props.mineCount}
+        loseFunction={this.props.loseFunction}
+        winFunction={this.props.winFunction}
       />
     );
   }
