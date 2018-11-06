@@ -214,20 +214,34 @@ class Board extends React.Component {
 
 ///////////////////////////////////////////
 
-class InputBox extends React.Component {
-  render() {}
+class InputRow extends React.Component {
+  render() {
+    return (
+      <div>
+        <label>{this.props.fieldName}</label>
+        <input />
+      </div>
+    );
+  }
 }
 
 class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameState: 1
+      gameState: 0
     };
   }
 
   renderMainMenu() {
-    return <span>Hi</span>;
+    return (
+      <div>
+        <InputRow fieldName="Rows" />
+        <InputRow fieldName="Columns" />
+        <InputRow fieldName="Mines" />
+        <button>Submit</button>
+      </div>
+    );
   }
   render() {
     if (this.state.gameState === 0) {
