@@ -4,7 +4,7 @@ import Cell from "./Cell.js";
 class Field extends React.Component {
   constructor(props) {
     super(props);
-
+    console.log(this.props.mineCount);
     let mineGrid = placeMines(
       create2dArray(this.props.rowCount, this.props.columnCount, false),
       this.props.mineCount
@@ -75,6 +75,7 @@ class Field extends React.Component {
 
   handleClick(row, column) {
     this.clickCell(row, column);
+
     if (
       this.state.mineArray[row][column] &&
       !this.state.flaggedArray[row][column]

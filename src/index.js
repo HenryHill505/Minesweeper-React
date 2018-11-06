@@ -4,8 +4,6 @@ import ReactDOM from "react-dom";
 import Board from "./Board";
 import "./styles.css";
 
-///////////////////////////////////////////
-
 class InputRow extends React.Component {
   render() {
     return (
@@ -29,26 +27,16 @@ class Game extends React.Component {
   }
 
   startGame() {
-    let rowVal = document.getElementById("RowsBox").value;
-    let columnVal = document.getElementById("ColumnsBox").value;
-    let mineVal = document.getElementById("MinesBox").value;
-    alert(
-      "Rows" + rowVal + "Columns Mines" + columnVal + "MineCount" + mineVal
-    );
+    let rowVal = parseInt(document.getElementById("RowsBox").value);
+    let columnVal = parseInt(document.getElementById("ColumnsBox").value);
+    let mineVal = parseInt(document.getElementById("MinesBox").value);
+
     this.setState({
       rowCount: rowVal,
       columnCount: columnVal,
       mineCount: mineVal,
       gameState: 1
     });
-    alert(
-      "Rows" +
-        this.state.rowCount +
-        "Columns Mines" +
-        this.state.columnCount +
-        "MineCount" +
-        this.state.mineCount
-    );
   }
 
   renderMainMenu() {
@@ -69,7 +57,7 @@ class Game extends React.Component {
         <Board
           rowCount={this.state.rowCount}
           columnCount={this.state.columnCount}
-          mineCount={this.state.minCount}
+          mineCount={this.state.mineCount}
         />
       );
     }
