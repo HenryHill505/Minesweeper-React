@@ -219,7 +219,7 @@ class InputRow extends React.Component {
     return (
       <div>
         <label>{this.props.fieldName}</label>
-        <input />
+        <input id={this.props.fieldName + "Box"} />
       </div>
     );
   }
@@ -229,8 +229,32 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameState: 0
+      gameState: 0,
+      rowCount: 0,
+      columnCount: 0,
+      mineCount: 0
     };
+  }
+
+  startGame() {
+    let rowVal = document.getElementById("RowBox").value;
+    let columnVal = document.getElementById("ColumnBox").value;
+    let mineVal = document.getElementById("MineBox").value;
+
+    this.setState({
+      rowCount: rowVal,
+      columnCount: columnVal,
+      mineCount: mineVal,
+      gameState: 1
+    });
+    alert(
+      "Rows" +
+        this.state.rowCount +
+        "Columns Mines" +
+        this.state.columnCount +
+        "MineCount" +
+        this.state.mineCount
+    );
   }
 
   renderMainMenu() {
@@ -239,7 +263,7 @@ class Game extends React.Component {
         <InputRow fieldName="Rows" />
         <InputRow fieldName="Columns" />
         <InputRow fieldName="Mines" />
-        <button>Submit</button>
+        <button>Start Game</button>
       </div>
     );
   }
