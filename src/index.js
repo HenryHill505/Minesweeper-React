@@ -237,10 +237,9 @@ class Game extends React.Component {
   }
 
   startGame() {
-    let rowVal = document.getElementById("RowBox").value;
-    let columnVal = document.getElementById("ColumnBox").value;
-    let mineVal = document.getElementById("MineBox").value;
-
+    let rowVal = document.getElementById("RowsBox").value;
+    let columnVal = document.getElementById("ColumnsBox").value;
+    let mineVal = document.getElementById("MinesBox").value;
     this.setState({
       rowCount: rowVal,
       columnCount: columnVal,
@@ -263,7 +262,7 @@ class Game extends React.Component {
         <InputRow fieldName="Rows" />
         <InputRow fieldName="Columns" />
         <InputRow fieldName="Mines" />
-        <button>Start Game</button>
+        <button onClick={() => this.startGame()}>Start Game</button>
       </div>
     );
   }
