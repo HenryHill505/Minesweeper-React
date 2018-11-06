@@ -212,15 +212,29 @@ class Board extends React.Component {
   }
 }
 
+///////////////////////////////////////////
+
+class InputBox extends React.Component {
+  render() {}
+}
+
 class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gameState: 0
+      gameState: 1
     };
   }
+
+  renderMainMenu() {
+    return <span>Hi</span>;
+  }
   render() {
-    return <Board rowCount={5} columnCount={5} mineCount={1} />;
+    if (this.state.gameState === 0) {
+      return this.renderMainMenu();
+    } else if (this.state.gameState === 1) {
+      return <Board rowCount={5} columnCount={5} mineCount={1} />;
+    }
   }
 }
 
