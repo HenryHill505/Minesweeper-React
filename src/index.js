@@ -1,20 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import Field from "./Field.js";
+import Board from "./Board";
 import "./styles.css";
-
-class Board extends React.Component {
-  render() {
-    return (
-      <Field
-        rowCount={this.props.rowCount}
-        columnCount={this.props.columnCount}
-        mineCount={this.props.mineCount}
-      />
-    );
-  }
-}
 
 ///////////////////////////////////////////
 
