@@ -26,6 +26,14 @@ class Game extends React.Component {
     };
   }
 
+  gameLose() {
+    this.setState({ gameState: 0 });
+  }
+
+  gameWin() {
+    this.setState({ gameState: 0 });
+  }
+
   startGame() {
     let rowVal = parseInt(document.getElementById("RowsBox").value);
     let columnVal = parseInt(document.getElementById("ColumnsBox").value);
