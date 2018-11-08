@@ -81,8 +81,7 @@ class Field extends React.Component {
       !this.state.flaggedArray[row][column]
     ) {
       this.loseGame();
-    }
-    if (
+    } else if (
       this.clearedCells >=
       this.props.rowCount * this.props.columnCount - this.props.mineCount
     ) {
