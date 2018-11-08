@@ -20,6 +20,9 @@ class Board extends React.Component {
   render() {
     return (
       <div>
+        <div>
+          <span>Flags: {this.state.flagCount}</span>
+        </div>
         <Field
           rowCount={this.props.rowCount}
           columnCount={this.props.columnCount}
