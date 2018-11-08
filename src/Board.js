@@ -26,6 +26,8 @@ class Board extends React.Component {
           mineCount={this.props.mineCount}
           loseFunction={this.props.loseFunction}
           winFunction={this.props.winFunction}
+          placeFlag={() => this.placeFlag()}
+          removeFlag={() => this.removeFlag()}
         />
       </div>
     );

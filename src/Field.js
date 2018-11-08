@@ -91,6 +91,11 @@ class Field extends React.Component {
   }
 
   handleContextMenu(row, column) {
+    if (this.state.flaggedArray[row][column]) {
+      this.props.removeFlag();
+    } else if (!this.state.flaggedArray[row][column]) {
+      this.props.placeFlag();
+    }
     let newArray = this.state.flaggedArray.slice();
     newArray[row][column] = !this.state.flaggedArray[row][column];
     this.setState({ flaggedArray: newArray });
