@@ -78,3 +78,7 @@ class Game extends React.Component {
 
 const rootElement = document.getElementById("root");
 ReactDOM.render(<Game />, rootElement);
+
+document.oncontextmenu = function() {
+  return false;
+};
