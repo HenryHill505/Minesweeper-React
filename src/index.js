@@ -19,6 +19,7 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      // 0: startment 1: playing 2: won 3: lost
       gameState: 0,
       rowCount: 0,
       columnCount: 0,
@@ -27,11 +28,11 @@ class Game extends React.Component {
   }
 
   gameLose() {
-    this.setState({ gameState: 0 });
+    this.setState({ gameState: 3 });
   }
 
   gameWin() {
-    this.setState({ gameState: 0 });
+    this.setState({ gameState: 2 });
   }
 
   startGame() {
@@ -60,7 +61,7 @@ class Game extends React.Component {
   render() {
     if (this.state.gameState === 0) {
       return this.renderMainMenu();
-    } else if (this.state.gameState === 1) {
+    } else {
       return (
         <Board
           rowCount={this.state.rowCount}

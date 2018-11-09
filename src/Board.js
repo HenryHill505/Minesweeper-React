@@ -42,7 +42,9 @@ class Board extends React.Component {
     if (gameState === 1) {
       content = "Playing";
     } else if (gameState === 2) {
-      content = "Dead";
+      content = "Success";
+    } else if (gameState === 3) {
+      content = "Failure";
     }
     return <button>{content}</button>;
   }
