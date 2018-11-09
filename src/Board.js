@@ -22,6 +22,7 @@ class Board extends React.Component {
       <div>
         <div>
           <span>Flags: {this.state.flagCount}</span>
+          {this.renderSmileyButton()}
         </div>
         <Field
           rowCount={this.props.rowCount}
@@ -34,6 +35,16 @@ class Board extends React.Component {
         />
       </div>
     );
+  }
+  renderSmileyButton() {
+    let content;
+    let gameState = this.props.gameState;
+    if (gameState === 1) {
+      content = "Playing";
+    } else if (gameState === 2) {
+      content = "Dead";
+    }
+    return <button>{content}</button>;
   }
 }
 

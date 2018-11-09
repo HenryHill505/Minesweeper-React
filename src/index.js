@@ -66,6 +66,7 @@ class Game extends React.Component {
           rowCount={this.state.rowCount}
           columnCount={this.state.columnCount}
           mineCount={this.state.mineCount}
+          gameState={this.state.gameState}
           loseFunction={() => this.gameLose()}
           winFunction={() => this.gameWin()}
         />
