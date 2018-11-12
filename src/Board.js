@@ -37,16 +37,20 @@ class Board extends React.Component {
     );
   }
   renderSmileyButton() {
-    let content;
+    let imageSource;
     let gameState = this.props.gameState;
     if (gameState === 1) {
-      content = "Playing";
+      imageSource = "./Smiley-Playing.jpg";
     } else if (gameState === 2) {
-      content = "Success";
+      imageSource = "./Smiley-Win.jpg";
     } else if (gameState === 3) {
-      content = "Failure";
+      imageSource = "./Smiley-Dead.jpg";
     }
-    return <button>{content}</button>;
+    return (
+      <button id="smiley-button">
+        <img src={imageSource} />
+      </button>
+    );
   }
 }
 

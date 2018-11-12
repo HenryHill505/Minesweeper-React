@@ -63,14 +63,16 @@ class Game extends React.Component {
       return this.renderMainMenu();
     } else {
       return (
-        <Board
-          rowCount={this.state.rowCount}
-          columnCount={this.state.columnCount}
-          mineCount={this.state.mineCount}
-          gameState={this.state.gameState}
-          loseFunction={() => this.gameLose()}
-          winFunction={() => this.gameWin()}
-        />
+        <div>
+          <Board
+            rowCount={this.state.rowCount}
+            columnCount={this.state.columnCount}
+            mineCount={this.state.mineCount}
+            gameState={this.state.gameState}
+            loseFunction={() => this.gameLose()}
+            winFunction={() => this.gameWin()}
+          />
+        </div>
       );
     }
   }
