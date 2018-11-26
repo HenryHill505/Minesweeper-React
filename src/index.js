@@ -9,7 +9,12 @@ class InputRow extends React.Component {
     return (
       <div>
         <label>{this.props.fieldName}</label>
-        <input id={this.props.fieldName + "Box"} />
+        <input
+          type="number"
+          min="1"
+          defaultValue={this.props.defaultValue}
+          id={this.props.fieldName + "Box"}
+        />
       </div>
     );
   }
@@ -29,6 +34,10 @@ class Game extends React.Component {
 
   gameLose() {
     this.setState({ gameState: 3 });
+  }
+
+  gameRestart() {
+    this.setState({ gameState: 0 });
   }
 
   gameWin() {
@@ -51,9 +60,9 @@ class Game extends React.Component {
   renderMainMenu() {
     return (
       <div>
-        <InputRow fieldName="Rows" />
-        <InputRow fieldName="Columns" />
-        <InputRow fieldName="Mines" />
+        <InputRow fieldName="Rows" defaultValue="5" />
+        <InputRow fieldName="Columns" defaultValue="5" />
+        <InputRow fieldName="Mines" defaultValue="5" />
         <button onClick={() => this.startGame()}>Start Game</button>
       </div>
     );
@@ -71,6 +80,7 @@ class Game extends React.Component {
             gameState={this.state.gameState}
             loseFunction={() => this.gameLose()}
             winFunction={() => this.gameWin()}
+            restartFunction={() => this.gameRestart()}
           />
         </div>
       );

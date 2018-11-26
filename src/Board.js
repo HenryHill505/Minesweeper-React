@@ -47,7 +47,7 @@ class Board extends React.Component {
       imageSource = "./Smiley-Dead.jpg";
     }
     return (
-      <button id="smiley-button">
+      <button id="smiley-button" onClick={() => this.props.restartFunction()}>
         <img src={imageSource} />
       </button>
     );
