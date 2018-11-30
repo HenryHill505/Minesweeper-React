@@ -1,6 +1,7 @@
 import React from "react";
 import Board from "./Board";
 import InputRow from "./InputRow";
+import MainMenu from "./MainMenu";
 
 class Game extends React.Component {
   constructor(props) {
@@ -35,19 +36,30 @@ class Game extends React.Component {
       rowCount: rowVal,
       columnCount: columnVal,
       mineCount: mineVal,
-      gameState: 1
+      gameState: 1,
+      renderCustomMenu: false
     });
   }
 
   renderMainMenu() {
-    return (
-      <div>
-        <InputRow fieldName="Rows" defaultValue="5" />
-        <InputRow fieldName="Columns" defaultValue="5" />
-        <InputRow fieldName="Mines" defaultValue="5" />
-        <button onClick={() => this.startGame()}>Start Game</button>
-      </div>
-    );
+    if (!this.state.renderCustomMenu) {
+      return (
+        <div>
+          <MainMenu />
+          <button onClick={() => this.startGame()}>Start Game</button>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <MainMenu />
+          <InputRow fieldName="Rows" defaultValue="5" />
+          <InputRow fieldName="Columns" defaultValue="5" />
+          <InputRow fieldName="Mines" defaultValue="5" />
+          <button onClick={() => this.startGame()}>Start Game</button>
+        </div>
+      );
+    }
   }
   render() {
     if (this.state.gameState === 0) {

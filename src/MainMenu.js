@@ -4,11 +4,27 @@ class MainMenu extends React.Component {
   render() {
     return (
       <div>
-        <input name="difficulty" value="easy" />
-        <input name="difficulty" value="medium" />
-        <input name="difficulty" value="hard" />
-        <input name="difficulty" value="custom" />
+        <div>
+          <input type="radio" name="difficulty" value="easy" /> Easy
+        </div>
+        <div>
+          <input type="radio" name="difficulty" value="medium" /> Medium
+        </div>
+        <div>
+          <input type="radio" name="difficulty" value="hard" /> Hard
+        </div>
+        <div>
+          <input
+            type="radio"
+            name="difficulty"
+            value="custom"
+            id="customRadio"
+          />
+          Custom
+        </div>
       </div>
     );
   }
 }
+
+export default MainMenu;
