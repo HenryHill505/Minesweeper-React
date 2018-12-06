@@ -11,7 +11,7 @@ class Cell extends React.Component {
       }
     } else {
       if (this.props.isFlagged) {
-        content = "F";
+        content = <img src="./Flag.png" alt="flag" class="flag-image" />;
       } else {
         content = "H";
       }

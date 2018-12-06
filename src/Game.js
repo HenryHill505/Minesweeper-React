@@ -50,13 +50,13 @@ class Game extends React.Component {
 
     switch (difficulty) {
       case "easy":
-        this.setGameParameters(5, 5, 5);
+        this.setGameParameters(9, 9, 10);
         break;
       case "medium":
-        this.setGameParameters(7, 7, 7);
+        this.setGameParameters(16, 16, 40);
         break;
       case "hard":
-        this.setGameParameters(10, 10, 10);
+        this.setGameParameters(16, 30, 99);
         break;
       case "custom":
         let rows = parseInt(document.getElementById("RowsBox").value);

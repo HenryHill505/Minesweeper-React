@@ -21,6 +21,7 @@ class Board extends React.Component {
     return (
       <div>
         <div>
+          <img src="./Flag.png" alt="flag" class="flag-image" />
           <span>Flags: {this.state.flagCount}</span>
           {this.renderSmileyButton()}
         </div>
