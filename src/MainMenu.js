@@ -5,16 +5,35 @@ class MainMenu extends React.Component {
     return (
       <div>
         <div>
-          <input type="radio" name="difficulty" value="easy" /> Easy
-        </div>
-        <div>
-          <input type="radio" name="difficulty" value="medium" /> Medium
-        </div>
-        <div>
-          <input type="radio" name="difficulty" value="hard" /> Hard
+          <input
+            onClick={() => this.props.disableCustomOptions()}
+            type="radio"
+            name="difficulty"
+            value="easy"
+          />{" "}
+          Easy
         </div>
         <div>
           <input
+            onClick={() => this.props.disableCustomOptions()}
+            type="radio"
+            name="difficulty"
+            value="medium"
+          />{" "}
+          Medium
+        </div>
+        <div>
+          <input
+            onClick={() => this.props.disableCustomOptions()}
+            type="radio"
+            name="difficulty"
+            value="hard"
+          />{" "}
+          Hard
+        </div>
+        <div>
+          <input
+            onClick={() => this.props.enableCustomOptions()}
             type="radio"
             name="difficulty"
             value="custom"

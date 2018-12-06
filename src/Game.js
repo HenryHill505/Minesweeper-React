@@ -11,7 +11,8 @@ class Game extends React.Component {
       gameState: 0,
       rowCount: 0,
       columnCount: 0,
-      mineCount: 0
+      mineCount: 0,
+      customOptions: false
     };
   }
 
@@ -25,6 +26,14 @@ class Game extends React.Component {
 
   gameWin() {
     this.setState({ gameState: 2 });
+  }
+
+  disableCustomOptions() {
+    this.setState({ customOptions: false });
+  }
+
+  enableCustomOptions() {
+    this.setState({ customOptions: true });
   }
 
   startGame() {
@@ -42,17 +51,23 @@ class Game extends React.Component {
   }
 
   renderMainMenu() {
-    if (!this.state.renderCustomMenu) {
+    if (!this.state.customOptions) {
       return (
         <div>
-          <MainMenu />
+          <MainMenu
+            enableCustomOptions={() => this.enableCustomOptions()}
+            disableCustomOptions={() => this.disableCustomOptions()}
+          />
           <button onClick={() => this.startGame()}>Start Game</button>
         </div>
       );
     } else {
       return (
         <div>
-          <MainMenu />
+          <MainMenu
+            enableCustomOptions={() => this.enableCustomOptions()}
+            disableCustomOptions={() => this.disableCustomOptions()}
+          />
           <InputRow fieldName="Rows" defaultValue="5" />
           <InputRow fieldName="Columns" defaultValue="5" />
           <InputRow fieldName="Mines" defaultValue="5" />
