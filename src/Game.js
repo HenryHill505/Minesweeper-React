@@ -36,15 +36,36 @@ class Game extends React.Component {
     this.setState({ customOptions: true });
   }
 
-  startGame() {
-    let rowVal = parseInt(document.getElementById("RowsBox").value);
-    let columnVal = parseInt(document.getElementById("ColumnsBox").value);
-    let mineVal = parseInt(document.getElementById("MinesBox").value);
-
+  setGameParameters(rows, columns, mines) {
     this.setState({
-      rowCount: rowVal,
-      columnCount: columnVal,
-      mineCount: mineVal,
+      rowCount: rows,
+      columnCount: columns,
+      mineCount: mines
+    });
+  }
+
+  startGame() {
+    let difficulty = document.querySelector('input[name="difficulty"]:checked')
+      .value;
+
+    switch (difficulty) {
+      case "easy":
+        this.setGameParameters(5, 5, 5);
+        break;
+      case "medium":
+        this.setGameParameters(7, 7, 7);
+        break;
+      case "hard":
+        this.setGameParameters(10, 10, 10);
+        break;
+      case "custom":
+        let rows = parseInt(document.getElementById("RowsBox").value);
+        let columns = parseInt(document.getElementById("ColumnsBox").value);
+        let mines = parseInt(document.getElementById("MinesBox").value);
+        this.setGameParameters(rows, columns, mines);
+        break;
+    }
+    this.setState({
       gameState: 1,
       renderCustomMenu: false
     });
